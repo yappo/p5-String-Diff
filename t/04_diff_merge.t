@@ -17,6 +17,20 @@ __END__
 
 ===
 --- data1
+pe[a]r[a]l
+--- data2
+old: pearal
+new: perl
+
+===
+--- data1
+pe[a]rl
+--- data2
+old: pearl
+new: perl
+
+===
+--- data1
 pe{a}rl
 --- data2
 old: perl
@@ -113,6 +127,22 @@ options:
 
 ===
 --- data1
+This library is [free software]{自由なソフト}; you can {not }redistribute it {or/}and[/or] modify
+it under the same terms as Pe{a}rl it{ }self.[
+][delete]
+--- data2
+old: |-
+  This library is free software; you can redistribute it and/or modify
+  it under the same terms as Perl itself.
+  delete
+new: |-
+  This library is 自由なソフト; you can not redistribute it or/and modify
+  it under the same terms as Pearl it self.
+options:
+  linebreak: 1
+
+===
+--- data1
 {This lib}r{ary is 自由なソフト; you can not r}e{distribute it or/and }mo[ve]{dify}
 [This library is free software; you can redistribute it and/or modify][
 ](snip)
@@ -129,6 +159,27 @@ new: |-
   (snip)
   it under the same terms as Pearl it self.
   append
+options:
+  linebreak: 1
+
+===
+--- data1
+{This lib}r{ary is 自由なソフト; you can not r}e{distribute it or/and }mo[ve]{dify}
+[This library is free software; you can redistribute it and/or modify][
+](snip)
+it under the same terms as Pe{a}rl it{ }self.[
+][delete]
+--- data2
+old: |-
+  remove
+  This library is free software; you can redistribute it and/or modify
+  (snip)
+  it under the same terms as Perl itself.
+  delete
+new: |-
+  This library is 自由なソフト; you can not redistribute it or/and modify
+  (snip)
+  it under the same terms as Pearl it self.
 options:
   linebreak: 1
 

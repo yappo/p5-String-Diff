@@ -4,7 +4,7 @@ use Test::Base;
 
 use String::Diff qw( diff_fully );
 
-filters { data1 => 'yaml', data2 => [qw/ yaml string_diff /] };
+filters { data1 => [qw/ yaml /], data2 => [qw/ yaml string_diff /] };
 
 sub string_diff {
     my $input = shift;
@@ -15,6 +15,32 @@ sub string_diff {
 run_compare;
 
 __END__
+
+===
+--- data1
+- []
+-
+ - ['+', 'perl']
+--- data2
+old: 
+new: perl
+
+===
+--- data1
+-
+ - ['-', 'perl']
+-
+--- data2
+old: perl
+new: 
+
+===
+--- data1
+- []
+- []
+--- data2
+old: 
+new: 
 
 ===
 --- data1

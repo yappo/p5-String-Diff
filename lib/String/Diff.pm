@@ -50,19 +50,20 @@ sub diff_fully {
 
 sub _fully {
     my($old, $new) = @_;
+    return ([], []) unless $old || $new;
     my @old_diff = ();
     my @new_diff = ();
     my $old_str;
     my $new_str;
 
-    my @diff = sdiff( map{[ split //, $_ ]} $old, $new);
+    my @diff = sdiff( map{ $_ ? [ split //, $_ ] : [] } $old, $new);
     my $last_mode = $diff[0]->[0];
     for my $line (@diff) {
         if ($last_mode ne $line->[0]) {
             push @old_diff, [$last_mode, $old_str] if defined $old_str;
             push @new_diff, [$last_mode, $new_str] if defined $new_str;
 
-            # skip concut
+            # skip concut ## i forget s mark
             push @old_diff, ['s', ''] unless defined $old_str;
             push @new_diff, ['s', ''] unless defined $new_str;
 

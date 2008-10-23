@@ -2,9 +2,11 @@ use strict;
 use utf8;
 use Test::Base;
 
+plan tests => 2 * blocks;
+
 use String::Diff qw( diff );
 
-filters { data1 => 'yaml', data2 => [qw/ yaml string_diff /] };
+filters { data1 => 'yaml', data2 => 'yaml' };
 
 sub string_diff {
     my $input = shift;
@@ -12,7 +14,16 @@ sub string_diff {
     $diff;
 }
 
-run_compare;
+run {
+    my $block = shift;
+
+    my $diff = diff($block->data2->{old}, $block->data2->{new}, %{ $block->data2->{options} });
+    my @diff = diff($block->data2->{old}, $block->data2->{new}, %{ $block->data2->{options} });
+
+    is_deeply $block->data1, $diff;
+    is_deeply $block->data1, \@diff;
+};
+
 
 __END__
 
