@@ -1,5 +1,10 @@
 Revision history for Perl extension String::Diff
 
+0.03    2007-06-10T14:39:00+09:00
+        - fixed to invalid handling of zeros bug. rt.cpan #26493
+        - fixed to description of POD is wrong. rt.cpan ticket #26476
+        - appended to inc directory. rt.cpan ticket #27049, #25981
+
 0.02    2006-11-20T17:40:45+09:00
         - default marks is editable. (idea from dankogai)
 
