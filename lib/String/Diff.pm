@@ -220,12 +220,12 @@ String::Diff - Simple diff to String
   print "$diff->[0]\n";# this is [Perl]
   print "$diff->[1]\n";# this is {Ruby}
 
-  my $diff = String::Diff::diff('this is Perl', 'this is Ruby',{
+  my $diff = String::Diff::diff('this is Perl', 'this is Ruby',
       remove_open => '<del>',
       remove_close => '</del>',
       append_open => '<ins>',
       append_close => '</ins>',
-  });
+  );
   print "$diff->[0]\n";# this is <del>Perl</del>
   print "$diff->[1]\n";# this is <ins>Ruby</ins>
 
@@ -233,12 +233,12 @@ String::Diff - Simple diff to String
   my $diff = String::Diff::diff_merge('this is Perl', 'this is Ruby');
   print "$diff\n";# this is [Perl]{Ruby}
 
-  my $diff = String::Diff::diff_merge('this is Perl', 'this is Ruby'{
+  my $diff = String::Diff::diff_merge('this is Perl', 'this is Ruby',
       remove_open => '<del>',
       remove_close => '</del>',
       append_open => '<ins>',
       append_close => '</ins>',
-  });
+  );
   print "$diff\n";# this is <del>Perl</del><ins>Ruby</ins>
 
   # change to default marks
