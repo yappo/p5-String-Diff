@@ -15,14 +15,21 @@ inc/Test/Base/Filter.pm
 inc/Test/Builder.pm
 inc/Test/Builder/Module.pm
 inc/Test/More.pm
+inc/YAML.pm
 lib/String/Diff.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
+t/00_compile-pp.t
 t/00_compile.t
+t/01_export-pp.t
 t/01_export.t
+t/02_diff_fully-pp.t
 t/02_diff_fully.t
+t/03_diff-pp.t
 t/03_diff.t
+t/04_diff_merge-pp.t
 t/04_diff_merge.t
+t/05_diff_regexp-pp.t
 t/05_diff_regexp.t
