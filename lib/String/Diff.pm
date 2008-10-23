@@ -5,7 +5,18 @@ use warnings;
 use base qw(Exporter);
 our @EXPORT_OK = qw( diff_fully diff diff_merge diff_regexp );
 
-use Algorithm::Diff qw( sdiff );
+BEGIN {
+    local $@;
+    if ($ENV{STRING_DIFF_PP}) {
+        $@ = 1;
+    } else {
+        eval "use Algorithm::Diff::XS qw( sdiff );"; ## no critic
+    }
+    if ($@) {
+        eval "use Algorithm::Diff qw( sdiff );"; ## no critic
+        die $@ if $@;
+    }
+}
 
 our $VERSION = '0.03';
 

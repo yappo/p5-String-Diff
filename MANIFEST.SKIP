@@ -16,3 +16,4 @@
 \.svn/
 ^[^/]+\.yaml$
 ^[^/]+\.pl$
+^cover_db_view/
