@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker qw(prompt);
 
 my $version = shift @ARGV or die "Usage: release.pl version";
 
-my $workdir  = ;
+my $workdir  = "$ENV{HOME}/pmsetup";
 my $checkout = "String-Diff-$version";
 
 chdir $workdir;
