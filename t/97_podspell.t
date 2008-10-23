@@ -10,3 +10,4 @@ String::Diff
 searchable
 HTML
 linebreak
+diff
