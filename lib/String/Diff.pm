@@ -9,6 +9,14 @@ use Algorithm::Diff qw( sdiff );
 
 our $VERSION = '0.01';
 
+our %DEFAULT_MARKS = (
+    remove_open  => '[',
+    remove_close => ']',
+    append_open  => '{',
+    append_close => '}',
+    separator    => '', # for diff_merge
+);
+
 sub diff_fully {
     my($old, $new, %opts) = @_;
     my $old_diff = [];
@@ -93,18 +101,10 @@ sub _fully_filter {
     @filter;
 }
 
-my %default_tags = (
-    remove_open  => '[',
-    remove_close => ']',
-    append_open  => '{',
-    append_close => '}',
-    separator    => '',
-);
-
 sub diff {
     my($old, $new, %opts) = @_;
     my($old_diff, $new_diff) = diff_fully($old, $new, %opts);
-    %opts = (%default_tags, %opts);
+    %opts = (%DEFAULT_MARKS, %opts);
 
     my $old_str = _str($old_diff, %opts);
     my $new_str = _str($new_diff, %opts);
@@ -131,7 +131,7 @@ sub _str {
 sub diff_merge {
     my($old, $new, %opts) = @_;
     my($old_diff, $new_diff) = diff_fully($old, $new, %opts);
-    %opts = (%default_tags, %opts);
+    %opts = (%DEFAULT_MARKS, %opts);
 
     my $old_c = 0;
     my $new_c = 0;
@@ -212,6 +212,10 @@ String::Diff - Simple diff to String
   use String::Diff qw( diff_fully diff diff_merge diff_regexp );# export functions
 
   # simple diff
+  my($old, $new) = String::Diff::diff('this is Perl', 'this is Ruby');
+  print "$old\n";# this is [Perl]
+  print "$new\n";# this is {Ruby}
+
   my $diff = String::Diff::diff('this is Perl', 'this is Ruby');
   print "$diff->[0]\n";# this is [Perl]
   print "$diff->[1]\n";# this is {Ruby}
@@ -236,6 +240,15 @@ String::Diff - Simple diff to String
       append_close => '</ins>',
   });
   print "$diff\n";# this is <del>Perl</del><ins>Ruby</ins>
+
+  # change to default marks
+  %String::Diff::DEFAULT_MARKS = (
+      remove_open  => '<del>',
+      remove_close => '</del>',
+      append_open  => '<ins>',
+      append_close => '</ins>',
+      separator    => '&lt;-OLD|NEW-&gt;', # for diff_merge
+  );
 
   # generated for regexp
   my $diff = String::Diff::diff_regexp('this is Perl', 'this is Ruby');
@@ -270,7 +283,7 @@ after the line is divided, diff is taken when 'linebreak' option is specified.
   my $string = String::Diff::diff_merge('this is Perl', 'this is Ruby', linebreak => 1);
   my $string = String::Diff::diff_regexp('this is Perl', 'this is Ruby', linebreak => 1);
 
-In diff and diff_merge methds the mark of the difference can be changed.
+In diff and diff_merge methods the mark of the difference can be changed.
 
   my $diff = String::Diff::diff('this is Perl', 'this is Ruby',{
       remove_open => '<del>',
