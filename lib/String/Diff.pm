@@ -7,7 +7,7 @@ our @EXPORT_OK = qw( diff_fully diff diff_merge diff_regexp );
 
 use Algorithm::Diff qw( sdiff );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our %DEFAULT_MARKS = (
     remove_open  => '[',
