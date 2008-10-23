@@ -149,3 +149,10 @@ options:
   remove_close: </del>
   append_open: <ins>
   append_close: </ins>
+
+===
+--- data1
+1[0]{1}
+--- data2
+old: 10
+new: 11

@@ -124,3 +124,10 @@ new: |-
   append
 options:
   linebreak: 1
+
+===
+--- data1
+1(?:0|1)
+--- data2
+old: 10
+new: 11

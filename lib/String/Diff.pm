@@ -52,29 +52,29 @@ sub _fully {
     my($old, $new) = @_;
     my @old_diff = ();
     my @new_diff = ();
-    my $old_str = '';
-    my $new_str = '';
+    my $old_str;
+    my $new_str;
 
     my @diff = sdiff( map{[ split //, $_ ]} $old, $new);
     my $last_mode = $diff[0]->[0];
     for my $line (@diff) {
         if ($last_mode ne $line->[0]) {
-            push @old_diff, [$last_mode, $old_str] if $old_str;
-            push @new_diff, [$last_mode, $new_str] if $new_str;
+            push @old_diff, [$last_mode, $old_str] if defined $old_str;
+            push @new_diff, [$last_mode, $new_str] if defined $new_str;
 
             # skip concut
-            push @old_diff, ['s', ''] unless $old_str;
-            push @new_diff, ['s', ''] unless $new_str;
+            push @old_diff, ['s', ''] unless defined $old_str;
+            push @new_diff, ['s', ''] unless defined $new_str;
 
-            $old_str = $new_str = '';
+            $old_str = $new_str = undef;
         }
  
         $old_str .= $line->[1];
         $new_str .= $line->[2];
         $last_mode = $line->[0];
     }
-    push @old_diff, [$last_mode, $old_str] if $old_str;
-    push @new_diff, [$last_mode, $new_str] if $new_str;
+    push @old_diff, [$last_mode, $old_str] if defined $old_str;
+    push @new_diff, [$last_mode, $new_str] if defined $new_str;
 
     @old_diff = _fully_filter('-', @old_diff);
     @new_diff = _fully_filter('+', @new_diff);
@@ -93,10 +93,10 @@ sub _fully_filter {
             $last_line->[1] .= $line->[1];
             next;
         }
-        push @filter, $last_line if $last_line->[1];
+        push @filter, $last_line if length $last_line->[1];
         $last_line = $line;
     }
-    push @filter, $last_line if $last_line->[1];
+    push @filter, $last_line if length $last_line->[1];
     
     @filter;
 }
