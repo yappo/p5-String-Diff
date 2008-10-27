@@ -18,7 +18,7 @@ BEGIN {
     }
 }
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 our %DEFAULT_MARKS = (
     remove_open  => '[',
