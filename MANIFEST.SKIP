@@ -1,3 +1,5 @@
+.git
+.shipit
 \bRCS\b
 \bCVS\b
 ^MANIFEST\.
@@ -17,3 +19,4 @@
 ^[^/]+\.yaml$
 ^[^/]+\.pl$
 ^cover_db_view/
+MYMETA.*

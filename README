@@ -1,27 +1,114 @@
-This is Perl module String::Diff.
+NAME
+    String::Diff - Simple diff to String
 
-INSTALLATION
+SYNOPSIS
+      use String::Diff;
+      use String::Diff qw( diff_fully diff diff_merge diff_regexp );# export functions
 
-String::Diff installation is straightforward. If your CPAN shell is set up,
-you should just be able to do
+      # simple diff
+      my($old, $new) = String::Diff::diff('this is Perl', 'this is Ruby');
+      print "$old\n";# this is [Perl]
+      print "$new\n";# this is {Ruby}
 
-    % cpan String::Diff
+      my $diff = String::Diff::diff('this is Perl', 'this is Ruby');
+      print "$diff->[0]\n";# this is [Perl]
+      print "$diff->[1]\n";# this is {Ruby}
 
-Download it, unpack it, then build it as per the usual:
+      my $diff = String::Diff::diff('this is Perl', 'this is Ruby',
+          remove_open => '<del>',
+          remove_close => '</del>',
+          append_open => '<ins>',
+          append_close => '</ins>',
+      );
+      print "$diff->[0]\n";# this is <del>Perl</del>
+      print "$diff->[1]\n";# this is <ins>Ruby</ins>
 
-    % perl Makefile.PL
-    % make && make test
+      # merged
+      my $diff = String::Diff::diff_merge('this is Perl', 'this is Ruby');
+      print "$diff\n";# this is [Perl]{Ruby}
 
-Then install it:
+      my $diff = String::Diff::diff_merge('this is Perl', 'this is Ruby',
+          remove_open => '<del>',
+          remove_close => '</del>',
+          append_open => '<ins>',
+          append_close => '</ins>',
+      );
+      print "$diff\n";# this is <del>Perl</del><ins>Ruby</ins>
 
-    % make install
+      # change to default marks
+      %String::Diff::DEFAULT_MARKS = (
+          remove_open  => '<del>',
+          remove_close => '</del>',
+          append_open  => '<ins>',
+          append_close => '</ins>',
+          separator    => '&lt;-OLD|NEW-&gt;', # for diff_merge
+      );
 
-DOCUMENTATION
+      # generated for regexp
+      my $diff = String::Diff::diff_regexp('this is Perl', 'this is Ruby');
+      print "$diff\n";# this\ is\ (?:Perl|Ruby)
 
-String::Diff documentation is available as in POD. So you can do:
+      # detailed list
+      my $diff = String::Diff::diff_fully('this is Perl', 'this is Ruby');
+      for my $line (@{ $diff->[0] }) {
+          print "$line->[0]: '$line->[1]'\n";
+      }
+      # u: 'this is '
+      # -: 'Perl'
 
-    % perldoc String::Diff
+      for my $line (@{ $diff->[1] }) {
+          print "$line->[0]: '$line->[1]'\n";
+      }
+      # u: 'this is '
+      # +: 'Ruby'
 
-to read the documentation online with your favorite pager.
+DESCRIPTION
+    String::Diff is the difference of a consecutive string is made. after
+    general diff is done, the difference in the line is searchable.
 
-Kazuhiro Osawa
+    the mark of the addition and the deletion can be freely changed. the
+    color is colored to the terminal with ANSI, using the HTML display it.
+
+    after the line is divided, diff is taken when 'linebreak' option is
+    specified.
+
+      my($old_string, $new_string) = String::Diff::diff_fully('this is Perl', 'this is Ruby', linebreak => 1);
+      my($old_string, $new_string) = String::Diff::diff('this is Perl', 'this is Ruby', linebreak => 1);
+      my $string = String::Diff::diff_merge('this is Perl', 'this is Ruby', linebreak => 1);
+      my $string = String::Diff::diff_regexp('this is Perl', 'this is Ruby', linebreak => 1);
+
+    In diff and diff_merge methods the mark of the difference can be
+    changed.
+
+      my $diff = String::Diff::diff('this is Perl', 'this is Ruby',{
+          remove_open => '<del>',
+          remove_close => '</del>',
+          append_open => '<ins>',
+          append_close => '</ins>',
+      });
+
+METHODS
+    diff_fully
+          the list that divides diff according to the mark is returnd.
+
+            my($old_string, $new_string) = String::Diff::diff_fully('this is Perl', 'this is Ruby');
+
+    diff
+          abd the mark of the deletion and the addition is given to the string.
+
+    diff_merge
+          old and new string is merged with diff.
+
+    diff_regexp
+          the regular expression to which old string and new string are matched with regexp is returned.
+
+AUTHOR
+    Kazuhiro Osawa <ko@yappo.ne.jp>
+
+SEE ALSO
+    Algorithm::Diff
+
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
