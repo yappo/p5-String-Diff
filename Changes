@@ -1,5 +1,9 @@
 Revision history for Perl extension String::Diff
 
+0.05    2012-06-22T15:55:30+09:00
+        - modern Makefile.PL
+        - fixed Bugs RT #71678
+
 0.04    2008-10-23T18:04:35+09:00
         - Algorithm::Diff::XS support
 
