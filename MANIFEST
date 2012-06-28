@@ -30,3 +30,4 @@ t/04_diff_merge-pp.t
 t/04_diff_merge.t
 t/05_diff_regexp-pp.t
 t/05_diff_regexp.t
+t/06_escape.t
