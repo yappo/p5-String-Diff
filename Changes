@@ -1,5 +1,9 @@
 Revision history for Perl extension String::Diff
 
+0.06    2012-06-28T10:51:01+09:00
+        - add escape option for diff/diff_merge RT #55265 (TINITA++)
+        - fixed bug, quotemeta being quoted is the IDEOGRAPHIC COMMA (U+3001)(、) RT #76371 (ANDK++)
+
 0.05    2012-06-22T15:55:30+09:00
         - modern Makefile.PL
         - fixed Bugs RT #71678
