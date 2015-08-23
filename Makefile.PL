@@ -1,5 +1,5 @@
-use inc::Module::Install;
 use 5.008001;
+use inc::Module::Install;
 use Module::Install::ReadmeFromPod;
 use Module::Install::ReadmeMarkdownFromPod;
 use Module::Install::GithubMeta;

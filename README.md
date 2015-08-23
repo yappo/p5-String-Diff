@@ -103,34 +103,37 @@ You can escape callback set to diff function and diff\_merge function.
     is($diff_old, 'this is &lt;b&gt;<del>Perl</del>&lt;/b&gt;');
     is($diff_new, 'this is &lt;b&gt;<ins>&lt;BIG&gt;R&lt;/BIG&gt;uby</ins>&lt;/b&gt;');
 
-
-
 # METHODS
 
 - diff\_fully
 
-    the list that divides diff according to the mark is returnd.
+        the list that divides diff according to the mark is returnd.
 
-    my($old_string, $new_string) = String::Diff::diff_fully('this is Perl', 'this is Ruby');
+          my($old_string, $new_string) = String::Diff::diff_fully('this is Perl', 'this is Ruby');
+
 - diff
 
-    abd the mark of the deletion and the addition is given to the string.
+        abd the mark of the deletion and the addition is given to the string.
+
 - diff\_merge
 
-    old and new string is merged with diff.
+        old and new string is merged with diff.
+
 - diff\_regexp
 
-    the regular expression to which old string and new string are matched with regexp is returned.
+        the regular expression to which old string and new string are matched with regexp is returned.
 
 # AUTHOR
 
-Kazuhiro Osawa <ko@yappo.ne.jp>
+Kazuhiro Osawa &lt;yappo {@} shibuya {dot} pl>
 
 # SEE ALSO
 
-[Algorithm::Diff](http://search.cpan.org/perldoc?Algorithm::Diff)
+[Algorithm::Diff](https://metacpan.org/pod/Algorithm::Diff)
 
 # LICENSE
+
+Copyright 2008 (C) Kazuhiro Osawa
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
