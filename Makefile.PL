@@ -1,5 +1,10 @@
 use inc::Module::Install;
 use 5.008001;
+use Module::Install::ReadmeFromPod;
+use Module::Install::ReadmeMarkdownFromPod;
+use Module::Install::GithubMeta;
+use Module::Install::Repository;
+
 name 'String-Diff';
 all_from 'lib/String/Diff.pm';
 readme_from 'lib/String/Diff.pm';

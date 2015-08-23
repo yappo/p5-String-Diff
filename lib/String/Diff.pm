@@ -202,7 +202,7 @@ sub _list_gc {
         $escape = $opts{escape};
     }
     while (scalar(@{ $diff }) > $c) {
-        my $_str = $opts{regexp} ? $escape->($diff->[$c]->[1]) : $diff->[$c]->[1];
+        my $_str = $escape ? $escape->($diff->[$c]->[1]) : $diff->[$c]->[1];
         if ($diff->[$c]->[0] eq '-') {
             $str .= "$opts{remove_open}$_str$opts{remove_close}";
         } elsif ($diff->[$c]->[0] eq '+') {
