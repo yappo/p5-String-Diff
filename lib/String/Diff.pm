@@ -365,7 +365,7 @@ You can escape callback set to diff function and diff_merge function.
 
 =head1 AUTHOR
 
-Kazuhiro Osawa E<lt>ko@yappo.ne.jpE<gt>
+Kazuhiro Osawa E<lt>yappo {@} shibuya {dot} plE<gt>
 
 =head1 SEE ALSO
 
