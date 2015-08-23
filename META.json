@@ -60,7 +60,7 @@
          "web" : "https://github.com/yappo/p5-String-Diff"
       }
    },
-   "version" : "0.06",
+   "version" : "0.07",
    "x_contributors" : [
       "Kazuhiro Osawa <yappo@shibuya.pl>",
       "Nikolay Martynov <mar.kolya@gmail.com>",

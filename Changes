@@ -1,5 +1,12 @@
 Revision history for Perl extension String::Diff
 
+{{$NEXT}}
+
+0.07  2015-08-23 17:58:40 JST
+        - Correctly escape hunks in the end of the merged string pull-req #2 (mar-kolya ++)
+        - Add copyright in a pod RT #48063 (frequency++)
+        - Fixed to documentation bug RT #96057 (valmid++)
+
 0.06    2012-06-28T10:51:01+09:00
         - add escape option for diff/diff_merge RT #55265 (TINITA++)
         - fixed bug, quotemeta being quoted is the IDEOGRAPHIC COMMA (U+3001)(、) RT #76371 (ANDK++)

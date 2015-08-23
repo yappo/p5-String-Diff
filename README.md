@@ -81,12 +81,12 @@ after the line is divided, diff is taken when 'linebreak' option is specified.
 
 In diff and diff\_merge methods the mark of the difference can be changed.
 
-    my $diff = String::Diff::diff('this is Perl', 'this is Ruby',{
+    my $diff = String::Diff::diff('this is Perl', 'this is Ruby',
         remove_open => '<del>',
         remove_close => '</del>',
         append_open => '<ins>',
         append_close => '</ins>',
-    });
+    );
 
 You can escape callback set to diff function and diff\_merge function.
 
